@@ -32,4 +32,12 @@ public class Transporter {
     public boolean isEmpty() {
         return cargo.isEmpty();
     }
+
+    public String toString() {
+        String output = "Cargo: \n";
+        for(Product p : cargo) {
+            output += p.toString() + "\n";
+        }
+        return output;
+    }
 }

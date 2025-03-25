@@ -1,20 +1,23 @@
 public class Product {
 
     String name;
-    boolean ship;
+    Consumer destination;
 
     public Product() {
         name = "Base";
-        ship = true;
     }
 
     public Product(String name) {
         this.name = name;
-        ship = true;
+    }
+
+    public void setDestination(Consumer destination) {
+        System.out.println(name + " destination set");
+        this.destination = destination;
     }
 
     public boolean equals(Product p) {
-        return this.name.equals(p.name);
+        return equals(p.name);
     }
 
     public boolean equals(String name) {

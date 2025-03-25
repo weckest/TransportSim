@@ -1,14 +1,14 @@
-import java.util.ArrayList;
 import java.util.List;
 
-public interface Consumer extends Inventory{
+public interface Consumer {
     default void receive(Transporter transporter) {
+        Inventory inventory = getInventory();
         while(!transporter.isEmpty()) {
-            inventory.add(transporter.unload());
+            inventory.inventory.add(transporter.unload());
+            inventory.inventory.getLast().destination = null;
         }
     }
 
-    default void sell() {
-
-    }
+    Inventory getInventory();
+    Factory getFactory();
 }
