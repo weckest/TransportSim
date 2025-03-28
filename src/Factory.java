@@ -4,22 +4,23 @@ import java.util.List;
 public class Factory implements Consumer, Producer, Orderer {
     Recipe recipe;
     Inventory inventory;
+    Account account;
 
     public Factory() {
         inventory = new Inventory();
+        account = new Account();
     }
 
     public Factory(Recipe r) {
         this.recipe = r;
         inventory = new Inventory();
+        account = new Account();
     }
 
     @Override
     public void receive(Transporter transporter) {
         Consumer.super.receive(transporter);
-        if(recipe != null) {
-            load(transporter);
-        }
+        load(transporter);
     }
 
 
@@ -49,5 +50,10 @@ public class Factory implements Consumer, Producer, Orderer {
     @Override
     public Recipe getRecipe() {
         return recipe;
+    }
+
+    @Override
+    public Account getAccount() {
+        return account;
     }
 }

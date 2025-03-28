@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
         PriceTracker tracker = new PriceTracker();
-//        PriceTracker.trackPrice("Wood", 5d);
-//        PriceTracker.trackPrice("Wood", 3d);
+        PriceTracker.trackPrice("Wood", 5d);
+        PriceTracker.trackPrice("Wood", 3d);
 //        PriceTracker.trackPrice("Metal", 10d);
 //        System.out.println(tracker);
 
@@ -44,8 +44,23 @@ public class Main {
 //
 
         f.produce();
+        p1.produce();
+        p1.produce();
+        p1.load(t);
+        f.receive(t);
+        f.produce();
+        c.receive(t);
         f.load(t);
         c.receive(t);
+
+        OrderTracker ot = new OrderTracker();
+
+        System.out.println(ot);
+        System.out.println(tracker);
+        System.out.println("Factory: $" + f.getAccount().money);
+        System.out.println("Producer: $" + p1.getAccount().money);
+        System.out.println("Product: $" + p2.getAccount().money);
+        System.out.println("Consumer: $" + c.getAccount().money);
 
 
 

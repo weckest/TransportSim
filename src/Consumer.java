@@ -5,10 +5,17 @@ public interface Consumer {
         Inventory inventory = getInventory();
         while(!transporter.isEmpty()) {
             inventory.inventory.add(transporter.unload());
-            inventory.inventory.getLast().destination = null;
+            if(getFactory() == inventory.inventory.getLast().destination) {
+                inventory.inventory.getLast().destination = null;
+            }
+        }
+        if(getRecipe() == null) {
+            getFactory().makeOrder(this);
         }
     }
 
     Inventory getInventory();
+    Recipe getRecipe();
     Factory getFactory();
+    Account getAccount();
 }

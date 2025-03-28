@@ -36,6 +36,27 @@ public class PriceTracker {
         return lowestPrice;
     }
 
+    public static Order priceOrder(Order order) {
+        for(String product: order.order.keySet()) {
+            order.price += getAvgPrice(product) * order.order.get(product);
+            order.prices.putIfAbsent(product, getAvgPrice(product));
+        }
+        return order;
+    }
+
+    public static List<String> getListOfProducts() {
+        return new ArrayList<>(sales.keySet());
+    }
+
+    public static double getPriceOfRecipe(Recipe recipe) {
+        Map<String, Integer> count = recipe.count();
+        double sum = 0d;
+        for(String product: count.keySet()) {
+            sum += getAvgPrice(product);
+        }
+        return sum;
+    }
+
     private static double avg(List<Double> prices) {
         double sum = 0;
         for (double price : prices) {
